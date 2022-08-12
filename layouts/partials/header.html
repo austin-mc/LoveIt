@@ -149,9 +149,16 @@
                 {{- with .Page -}}
                     {{- $url = .RelPermalink -}}
                 {{- end -}}
+            {{- if ne .Name "Resume" -}}
                 <a class="menu-item" href="{{ $url }}" title="{{ .Title }}"{{ if (urls.Parse $url).Host }} rel="noopener noreffer" target="_blank"{{ end }}>
                     {{- .Pre | safeHTML }}{{ .Name }}{{ .Post | safeHTML -}}
                 </a>
+            {{- end -}}
+            {{- if eq .Name "Resume" -}}
+                <a class="menu-item" href="/resume.pdf" title="{{ .Title }}"{{ if (urls.Parse $url).Host }} rel="noopener noreffer" target="_blank"{{ end }}>
+                    {{- .Pre | safeHTML }}{{ .Name }}{{ .Post | safeHTML -}}
+                </a>
+            {{- end -}}
             {{- end -}}
             <a href="javascript:void(0);" class="menu-item theme-switch" title="{{ T "switchTheme" }}">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
